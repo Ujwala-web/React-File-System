@@ -71,19 +71,29 @@ figure {
   display: flex;
   justify-content: left;
   flex-direction: row;
-  padding: 20px;
+ }
+.container {
+  max-width: 300px;
+  padding: 10px;
+}
+.technology-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.technology{
+  display: flex;
+}
+.square {
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  background-color: #555;
+  margin: 5px;
 }
 
 #colorlib-aside {
-  padding-top: 1em;
-  padding-bottom: 40px;
-  overflow: scroll;
-  background: #f2f3f7;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s; 
-}
-#colorlib-aside1 {
   padding-top: 1em;
   padding-bottom: 40px;
   overflow: scroll;
