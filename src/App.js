@@ -24,6 +24,8 @@ class App extends Component {
       <div className='header'>Intel Header</div>
       <div id="colorlib-page">
         	<Sidebar toggleShow={this.openSideBar}/>
+          <Sidebar toggleShow={this.openSideBar}/>
+          <Sidebar toggleShow={this.openSideBar}/>
           {
             this.state.show &&  <TechSidebar toggleShow={this.closeSideBar}/>
           }
