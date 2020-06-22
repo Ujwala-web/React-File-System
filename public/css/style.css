@@ -81,6 +81,7 @@ figure {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 25px;
 }
 .technology{
   display: flex;
@@ -90,17 +91,126 @@ figure {
   width: 15px;
   text-align: center;
   background-color: #555;
-  margin: 5px;
+  margin: 5px 10px;
 }
-
+.square:hover{
+  background-color: white;
+  color: white;
+}
+.technology-button {
+  border:none;
+  background-color: #f2f3f7;
+  outline:none;
+}
+.close {
+  height: 15px;
+  width: 2px;
+  background-color: black;
+  transform: rotate(45deg);
+  margin-right: 15px;
+}
+.md {
+  height: 15px;
+  width: 2px;
+  background-color: black;
+  transform: rotate(90deg);
+}
+.close-button {
+  float: right;
+  border: none;
+  outline: none;
+}
+.header {
+  border-style: solid;
+  padding: 30px;
+}
 #colorlib-aside {
   padding-top: 1em;
   padding-bottom: 40px;
-  overflow: scroll;
+  /* overflow: scroll; */
+  min-height: 800px;
   background: #f2f3f7;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; 
+}
+#colorlib-aside1 {
+  padding-top: 1em;
+  padding-bottom: 40px;
+  overflow: scroll;
+  max-height: 700px;
+  margin-top: 93px;
+  background: #f2f3f7;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; 
+}
+.content-wrapper {
+  background-color: #f2f3f7;
+  min-height: 700px;
+  margin-top: 102px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  color: lightgrey;
+  margin-right: 20px;
+}
+.submit-button {
+  background-color: gray;
+  border-radius: 8px;
+  width: 90px;
+}
+.submit-button-wrapper {
+  text-align: center;
+}
+
+.tree-view {
+  overflow-y: hidden;
+}
+
+.tree-view_item {
+  /* immediate child of .tree-view, for styling convenience */
+  display: flex;
+}
+
+/* style for the children nodes container */
+.tree-view_children {
+  margin-left: 16px;
+}
+
+.tree-view_children-collapsed {
+  height: 0px;
+}
+
+.tree-view_arrow {
+  cursor: pointer;
+  margin-right: 6px;
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tree-view_arrow:after {
+  content: '-';
+}
+
+/* rotate the triangle to close it */
+.tree-view_arrow-collapsed:after  {
+  /* -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg); */
+  /* transform: rotate(-90deg); */
+  content: '+';
+}
+.tree-wrapper {
+  padding: 25px;
+}
+.tree-info {
+  padding-left: 38px;
 }
   @media screen and (max-width: 768px) {
     #colorlib-aside {
@@ -141,7 +251,8 @@ figure {
       padding-right: .3em; }
   #colorlib-aside #colorlib-main-menu {
     display: block;
-    width: 100%; }
+    width: 100%; 
+  }
     #colorlib-aside #colorlib-main-menu .collapse {
       display: block !important; }
     #colorlib-aside #colorlib-main-menu ul {
@@ -152,13 +263,16 @@ figure {
         #colorlib-aside #colorlib-main-menu ul {
           margin: 0 0 2em 0; } }
       #colorlib-aside #colorlib-main-menu ul li {
-        margin: 0 0 10px 0;
+        margin: 0 0 30px 0;
         padding: 0;
         list-style: none;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         text-transform: uppercase;
-        letter-spacing: 1px; }
+        letter-spacing: 1px; 
+        padding: 10px;
+        background-color: #808080;
+      }
         #colorlib-aside #colorlib-main-menu ul li a {
           color: rgba(0, 0, 0, 0.7);
           text-decoration: none;
