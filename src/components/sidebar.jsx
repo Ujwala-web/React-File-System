@@ -16,10 +16,10 @@ export default class Sidebar extends Component {
               </div>
             </nav>
             <div className="technology-wrapper">
-              <div className="technology"><button className="technology-button" onClick={this.props.toggleShow}><div className="square" /></button><div>1270</div></div>
-              <div className="technology"><button className="technology-button" onClick={this.props.toggleShow}><div className="square" /></button><div>1272</div></div>
-              <div className="technology"><button className="technology-button" onClick={this.props.toggleShow}><div className="square" /></button><div>1274</div></div>
-              <div className="technology"><button className="technology-button" onClick={this.props.toggleShow}><div className="square" /></button><div>1276</div></div>
+              <div className="technology"><button className="technology-button" onClick={()=>this.props.toggleShow('1270')} ><div className="square" /></button><div>1270</div></div>
+              <div className="technology"><button className="technology-button" onClick={()=>this.props.toggleShow('1272')} ><div className="square" /></button><div>1272</div></div>
+              <div className="technology"><button className="technology-button" onClick={()=>this.props.toggleShow('1274')} ><div className="square" /></button><div>1274</div></div>
+              <div className="technology"><button className="technology-button" onClick={()=>this.props.toggleShow('1276')} ><div className="square" /></button><div>1276</div></div>
             </div>
             <nav id="colorlib-main-menu" role="navigation" className="navbar">
               <div id="navbar" className="collapse">

@@ -10,10 +10,12 @@ class App extends Component {
     super(props);
     this.state = {
       show: false,
+      techId:''
     };
   }
-  openSideBar = () => {
+  openSideBar = (id) => {
     this.setState({show: true});
+    this.setState({techId: id});
   }
   closeSideBar =() =>{
     this.setState({show: false});
@@ -25,7 +27,7 @@ class App extends Component {
       <div id="colorlib-page">
         	<Sidebar toggleShow={this.openSideBar}/>
           {
-            this.state.show &&  <TechSidebar toggleShow={this.closeSideBar}/>
+            this.state.show &&  <TechSidebar id={this.state.techId} toggleShow={this.closeSideBar}/>
           }
           
           <div id="colorlib-main">

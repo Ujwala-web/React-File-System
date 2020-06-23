@@ -99,7 +99,7 @@ const dataSource = [
 ];
 export default class TechSidebar extends Component {
   render() {
-    const label0 = <><div className="square" /><span className="node">1270</span></>;
+    const label0 = <><div className="square" /><span className="node">{this.props.id}</span></>;
     return (
       <div>
         <div className='container'>
@@ -114,7 +114,33 @@ export default class TechSidebar extends Component {
               <div className='tree-wrapper'>
         
                   <TreeView key="1" nodeLabel={label0} defaultCollapsed={false}>
-                    {dataSource.map((node, i) => {
+                    {
+                      fileStructure.map((node,i) => {
+                          return node.id===this.props.id && (
+                            node.value.map((nodeVal)=>{
+                             const label1 = <><div className="square" /><span className="node">{nodeVal.id}</span></>
+                             return( <TreeView key={nodeVal.id +i} nodeLabel={label1} defaultCollapsed={false}>
+                                  {
+                                    nodeVal.value.map((nodelevel1) =>{
+                                      const label2 = <><div className="square" /><span className="node">{nodelevel1.id}</span></>
+                                      return <TreeView key={nodelevel1.id + i} nodeLabel={label2} defaultCollapsed={false}>
+                                               {
+                                                 nodelevel1.value.map((nodelevel2)=>{
+                                                   return(
+                                                    <div className="tree-info"> <input type="checkbox" id={nodelevel2+this.props.id} name={nodelevel2+this.props.id} value={nodelevel2}/><span className='checkbox-text'>{nodelevel2}</span></div>
+                                                    )
+                                                 })
+                                               }
+                                        </TreeView>
+                                    })
+                                  }
+                                </TreeView>
+                             ) 
+                            })
+                          )
+                      })
+                    }
+                    {/* {dataSource.map((node, i) => {
                     const type = node.type;
                     const label = <><div className="square" /><span className="node">{type}</span></>;
                       return ( 
@@ -131,8 +157,8 @@ export default class TechSidebar extends Component {
                       })}
                     </TreeView>
                 );
-                }
-                )} 
+                } */}
+                {/* )}  */}
                 </TreeView>
             </div>
             <div className="submit-button-wrapper">
