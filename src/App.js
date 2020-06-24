@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar'
 import TechSidebar from './components/techSidebar'
-import Introduction from './components/introduction'
 import Content from './components/content'
 
 class App extends Component {
