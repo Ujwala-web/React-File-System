@@ -3,13 +3,16 @@ import './App.css';
 import Sidebar from './components/sidebar'
 import TechSidebar from './components/techSidebar'
 import Content from './components/content'
+import Logo from './img/intel.jpg'
+import {tableContent} from '../src/utils/const'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      techId:''
+      techId:'',
+      tableContentList : tableContent
     };
   }
   openSideBar = (id) => {
@@ -19,18 +22,21 @@ class App extends Component {
   closeSideBar =() =>{
     this.setState({show: false});
   }
+  updateTableContentList=(list) =>{
+    this.setState({tableContentList: list});
+  }
   render() {
     return (
       <>
-      <div className='header'>Intel Header</div>
+      <div className='header'><img src={Logo}></img></div>
       <div id="colorlib-page">
         	<Sidebar toggleShow={this.openSideBar}/>
           {
-            this.state.show &&  <TechSidebar id={this.state.techId} toggleShow={this.closeSideBar}/>
+            this.state.show &&  <TechSidebar id={this.state.techId} toggleShow={this.closeSideBar} updateTableContentList={this.updateTableContentList} tableContentList={this.state.tableContentList}/>
           }
           
           <div id="colorlib-main">
-					<Content></Content>
+					<Content tableContentList={this.state.tableContentList}></Content>
           	</div>
        </div>
        </>

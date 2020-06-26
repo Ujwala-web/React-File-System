@@ -122,7 +122,6 @@ figure {
 }
 .header {
   border-style: solid;
-  padding: 30px;
 }
 #colorlib-aside {
   padding-top: 1em;
@@ -157,7 +156,9 @@ figure {
   margin-right: 20px;
 }
 .submit-button {
-  background-color: gray;
+  /* background-color: gray; */
+  background-color: #104E8B;
+  color: white; 
   border-radius: 8px;
   width: 90px;
 }
@@ -218,9 +219,11 @@ figure {
 } 
 #customers td, #customers th {
   border: 1px solid #ddd;
-  padding: 10px;
-  font-size: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
   color: black;
+  font-weight: 100;
+  font-family: 'ARIAL';
 }
 #customers tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -228,11 +231,14 @@ figure {
 
 #customers th {
   text-align: left;
-  background-color: #808080;
-  color: rgba(0, 0, 0, 0.7);
+  /* background-color: #808080; */
+  background-color: #104E8B;
+  /* color: rgba(0, 0, 0, 0.7); */
+  color: white;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
+  font-weight: 100;
 }
 /* rotate the triangle to close it */
 .tree-view_arrow-collapsed:after  {
@@ -308,10 +314,12 @@ figure {
         text-transform: uppercase;
         letter-spacing: 1px; 
         padding: 10px;
-        background-color: #808080;
+        /* background-color: #808080; */
+        background-color: #104E8B;
       }
         #colorlib-aside #colorlib-main-menu ul li a {
-          color: rgba(0, 0, 0, 0.7);
+          /* color: rgba(0, 0, 0, 0.7); */
+          color: white;
           text-decoration: none;
           position: relative;
           padding: 10px 0;

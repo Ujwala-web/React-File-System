@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import TreeView from './TreeView'
+
 const fileStructure = [
   {
     id:'1270',
     value: [
       { id:'PEQU', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
         ]},
       { id:'PBUD', value :[
-        {id:'8PBUCF', value:['F1','F2','F3']},
-        {id:'8PBUCF', value:['F1','F2','F3']},
+        {id:'8PBUCF', value:['M4G','M4P']},
+        {id:'8PBUCF', value:['M4G','M4P']},
       ]},
       { id:'PBJA', value :[
-        {id:'8PBUCF', value:['F1','F2','F3']},
-        {id:'8PBUCF', value:['F1','F2','F3']},
+        {id:'8PBUCF', value:['M4G','M4P']},
+        {id:'8PBUCF', value:['M4G','M4P']},
     ]},     
     ]
   },
@@ -22,16 +23,16 @@ const fileStructure = [
     id:'1272',
     value: [
       { id:'PEQU', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
         ]},
       { id:'PBUD', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
       ]},
       { id:'PBJA', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
     ]},     
     ]
   },
@@ -40,16 +41,16 @@ const fileStructure = [
     id:'1274',
     value: [
       { id:'PEQU', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
         ]},
       { id:'PBUD', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
       ]},
       { id:'PBJA', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
     ]},     
     ]
   },
@@ -57,16 +58,16 @@ const fileStructure = [
     id:'1276',
     value: [
       { id:'PEQU', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
         ]},
       { id:'PBUD', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
       ]},
       { id:'PBJA', value :[
-          {id:'8PBUCF', value:['F1','F2','F3']},
-          {id:'8PBUCF', value:['F1','F2','F3']},
+          {id:'8PBUCF', value:['M4G','M4P']},
+          {id:'8PBUCF', value:['M4G','M4P']},
     ]},     
     ]
   },
@@ -97,7 +98,51 @@ const dataSource = [
     ],
   },
 ];
+
+const m4gPush= {
+  col1:"gxt_8pbucf_0a_8PBUCF_M4G_2AA.oas",
+  status:"green",
+  col2:"TapeOutlog_date.log" 
+}
+const m4pPush= {
+  col1:"gxt_8pbucf_0a_8PBUCF_M4P_2AA.oas",
+  status:"green",
+  col2:"TapeOutlog_date.log" 
+}
 export default class TechSidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      folderList:[]
+    };
+  }
+  onCheckBoxClick = (folder) => {
+    console.log(folder)
+    var list = this.state.folderList;
+    list.push(folder);
+    this.setState({folderList: list});
+    console.log(this.state.folderList)
+  }
+  
+  onSubmit = ()=>{
+   console.log('inside submit')
+    this.state.folderList.map((folder=>{
+      if(folder==='M4G'){
+        console.log('inside m4g')
+        this.props.tableContentList.push(
+          m4gPush
+        )
+        this.props.updateTableContentList(this.props.tableContentList)
+      }else{
+        console.log('inside m4p')
+        this.props.tableContentList.push(
+        m4pPush
+        )
+        this.props.updateTableContentList(this.props.tableContentList)
+      }
+    }))
+  }
+
   render() {
     const label0 = <><div className="square" /><span className="node">{this.props.id}</span></>;
     return (
@@ -127,7 +172,7 @@ export default class TechSidebar extends Component {
                                                {
                                                  nodelevel1.value.map((nodelevel2)=>{
                                                    return(
-                                                    <div className="tree-info"> <input type="checkbox" id={nodelevel2+this.props.id} name={nodelevel2+this.props.id} value={nodelevel2}/><span className='checkbox-text'>{nodelevel2}</span></div>
+                                                    <div className="tree-info"> <input type="checkbox" id={nodelevel2+this.props.id} name={nodelevel2+this.props.id} value={nodelevel2} onClick={()=>this.onCheckBoxClick(nodelevel2)}/><span className='checkbox-text'>{nodelevel2}</span></div>
                                                     )
                                                  })
                                                }
@@ -162,7 +207,7 @@ export default class TechSidebar extends Component {
                 </TreeView>
             </div>
             <div className="submit-button-wrapper">
-              <button type="submit" className="submit-button">Submit</button>
+              <button type="submit" className="submit-button" onClick={()=>this.onSubmit()}>Submit</button>
             </div>
 
 
