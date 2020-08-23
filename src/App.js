@@ -5,6 +5,7 @@ import TechSidebar from './components/techSidebar'
 import Content from './components/content'
 import Logo from './img/intel.jpg'
 import {tableContent} from '../src/utils/const'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,11 @@ class App extends Component {
   openSideBar = (id) => {
     this.setState({show: true});
     this.setState({techId: id});
+    const apiUrl = 'https://api.github.com/users/hacktivist123/repos';
+    axios.get(apiUrl).then((repos) => {
+      const allRepos = repos.data;
+      console.log(repos);
+    });
   }
   closeSideBar =() =>{
     this.setState({show: false});
@@ -31,9 +37,9 @@ class App extends Component {
       <div className='header'><img src={Logo}></img></div>
       <div id="colorlib-page">
         	<Sidebar toggleShow={this.openSideBar}/>
-          {
+          {/* {
             this.state.show &&  <TechSidebar id={this.state.techId} toggleShow={this.closeSideBar} updateTableContentList={this.updateTableContentList} tableContentList={this.state.tableContentList}/>
-          }
+          } */}
           
           <div id="colorlib-main">
 					<Content tableContentList={this.state.tableContentList}></Content>
