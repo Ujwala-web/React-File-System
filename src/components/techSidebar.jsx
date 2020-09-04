@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import TreeView from './TreeView'
 
+const items = [ 'gxt_x74yldtop_d06_1T774D_PC1_3AA.oas', 'gxt_x74yldtop_d06_1X784D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X794D_PC3_3AA.oas', 'gxt_x74yldtop_d06_1X275D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X274D_PC1_3AA.oas']
+
 const fileStructure = [
   {
     id:'1270',
@@ -109,6 +111,7 @@ const m4pPush= {
   status:"green",
   col2:"TapeOutlog_date.log" 
 }
+
 export default class TechSidebar extends Component {
   constructor(props) {
     super(props);
@@ -116,6 +119,39 @@ export default class TechSidebar extends Component {
       folderList:[]
     };
   }
+   getFolderStructure = () =>{
+    const {folderStructure} = this.props;
+    var content = [];
+    let folder1 = [];
+    let folder2 = [];
+    var iterator = folderStructure.entries()
+    for (const [k1, v1] of iterator) {
+     const label1 = <><div className="square" /><span className="node">{k1}</span></>;
+     for (const [k2, v2] of v1) {
+      const label2 = <><div className="square" /><span className="node">{k2}</span></>;
+      let folder3 = [];
+      for (const [k3, v3] of v2) {
+        const label3 = <><div className="square" /><span className="node">{k3}</span></>
+        console.log(v3);
+        folder3.push(<TreeView key={label3} nodeLabel={label3} defaultCollapsed={false}>
+          <div className="tree-info"> <input type="checkbox" id={v3} name={v3} value={v3} onClick={()=>this.onCheckBoxClick(v3)}/><span className='checkbox-text'>{v3}</span></div>
+        </TreeView>)
+       }       
+        folder2.push(<TreeView key={label2} nodeLabel={label2} defaultCollapsed={false}>
+         {folder3}
+       </TreeView>)
+     }
+     folder1.push(<TreeView key={label1} nodeLabel={label1} defaultCollapsed={false}>
+       {folder2}
+     </TreeView>)
+    }
+    const label0 = <><div className="square" /><span className="node">{this.props.id}</span></>;
+    content.push( <TreeView key="label0" nodeLabel={label0} defaultCollapsed={false}>
+      {folder1}
+    </TreeView>
+    )
+    return content;
+   }
   onCheckBoxClick = (folder) => {
     console.log(folder)
     var list = this.state.folderList;
@@ -144,10 +180,11 @@ export default class TechSidebar extends Component {
   }
 
   render() {
+    const {folderStructure} = this.props;
     const label0 = <><div className="square" /><span className="node">{this.props.id}</span></>;
     return (
       <div>
-        <div className='container'>
+        <div className='/'>
           <nav href="#navbar" className="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i /></nav>
           <aside id="colorlib-aside1" className="border js-fullheight">
               <button className='close-button' onClick={this.props.toggleShow} >
@@ -157,9 +194,21 @@ export default class TechSidebar extends Component {
                 </button> 
         
               <div className='tree-wrapper'>
-        
-                  <TreeView key="1" nodeLabel={label0} defaultCollapsed={false}>
+             
+                  {/* <TreeView key="1" nodeLabel={label0} defaultCollapsed={false}>
                     {
+                      // Array.prototype.forEach((value, index) => {
+                      
+                      // return <TreeView key="1" nodeLabel="fwef" defaultCollapsed={false}>
+                      //   </TreeView>
+                      
+
+                    //})
+                  }
+                    </TreeView> */}
+                    {this.getFolderStructure()}
+            
+                    {/* {
                       fileStructure.map((node,i) => {
                           return node.id===this.props.id && (
                             node.value.map((nodeVal)=>{
@@ -184,27 +233,8 @@ export default class TechSidebar extends Component {
                             })
                           )
                       })
-                    }
-                    {/* {dataSource.map((node, i) => {
-                    const type = node.type;
-                    const label = <><div className="square" /><span className="node">{type}</span></>;
-                      return ( 
-                      <TreeView key={type + '|' + i} nodeLabel={label} defaultCollapsed={false}>
-                      {node.people.map(person => {
-                        const label2 = <><div className="square" /><span className="node">{person.name}</span></>;
-                        return (
-                          <TreeView nodeLabel={label2} key={person.name} defaultCollapsed={false}>
-                            <div className="tree-info"> {person.file1}</div>
-                            <div className="tree-info">{person.file2}</div>
-                            <div className="tree-info"> {person.file3}</div>
-                          </TreeView>
-                        );
-                      })}
-                    </TreeView>
-                );
-                } */}
-                {/* )}  */}
-                </TreeView>
+                    } */}
+                {/* </TreeView> */}
             </div>
             <div className="submit-button-wrapper">
               <button type="submit" className="submit-button" onClick={()=>this.onSubmit()}>Submit</button>

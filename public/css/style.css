@@ -198,7 +198,7 @@ figure {
   content: '-';
 }
 .checkbox-text{
-  padding:5px
+  font-size: 11px;
 }
 .dot {
   height: 15px;
@@ -252,7 +252,7 @@ figure {
   padding: 25px;
 }
 .tree-info {
-  padding-left: 38px;
+  padding-left: 15px;
 }
 
   @media screen and (max-width: 768px) {
