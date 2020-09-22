@@ -157,25 +157,31 @@ export default class TechSidebar extends Component {
     var list = this.state.folderList;
     list.push(folder);
     this.setState({folderList: list});
-    console.log(this.state.folderList)
+   // console.log(this.state.folderList)
   }
   
   onSubmit = ()=>{
    console.log('inside submit')
+   console.log(this.state.folderList)
+   var person;
     this.state.folderList.map((folder=>{
-      if(folder==='M4G'){
-        console.log('inside m4g')
-        this.props.tableContentList.push(
-          m4gPush
-        )
-        this.props.updateTableContentList(this.props.tableContentList)
-      }else{
-        console.log('inside m4p')
-        this.props.tableContentList.push(
-        m4pPush
-        )
-        this.props.updateTableContentList(this.props.tableContentList)
-      }
+      // if(folder==='M4G'){
+      //   console.log('inside m4g')
+      //   this.props.tableContentList.push(
+      //     m4gPush
+      //   )
+      //   this.props.updateTableContentList(this.props.tableContentList)
+      // }else{
+      //   console.log('inside m4p')
+      //   this.props.tableContentList.push(
+      //   m4pPush
+      //   )
+      //   this.props.updateTableContentList(this.props.tableContentList)
+      // }
+      person = {col1:folder, status:"Green", col2:"TapeOutlog_date.log"};
+      this.props.tableContentList.push(person);
+      console.log( this.props.tableContentList);
+      this.props.updateTableContentList(this.props.tableContentList)
     }))
   }
 
@@ -186,7 +192,7 @@ export default class TechSidebar extends Component {
       <div>
         <div className='/'>
           <nav href="#navbar" className="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i /></nav>
-          <aside id="colorlib-aside1" className="border js-fullheight">
+          <aside id="colorlib-aside1" className="border js-fullheight" style={{width: "350px"}}>
               <button className='close-button' onClick={this.props.toggleShow} >
               <div class="close">
                   <div class="md"></div>
