@@ -9,12 +9,11 @@ import axios from 'axios'
 
 const tmp = [
   ["/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/8S73MA/LAYOUTS/gxt_x74yldtop_d06_1T774D_PC1_3AA.oas\n",
-  "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/8S73MA/LAYOUTS/gxt_x74yldtop_d06_1X784D_PC2_3AA.oas\n",
-  "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/8S73MA/LAYOUTS/gxt_x74yldtop_d06_1X794D_PC3_3AA.oas"
-  ],
-   ["/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/88CFCA/LAYOUTS/gxt_x74yldtop_d06_1X274D_PC1_4AA.oas\n", 
-   "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/88CFCA/LAYOUTS/gxt_x74yldtop_d06_1X274D_PC2_3AA.oas\n", 
-   "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/88CFCA/LAYOUTS/gxt_x74yldtop_d06_1X474D_PC3_3AA.oas"
+  "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/8S73MA/LAYOUTS/gxt_x74yldtop_d06_1T774D_PC1_3AA.oas\n",
+  "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/8S73MA/LAYOUTS/gxt_x76yldtop_d06_1T774D_PC2_3AA.oas\n"
+   ],
+   [   "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/88CFCA/LAYOUTS/gxt_x75yldtop_d06_1X474D_PC3_3AA.oas",
+   "/nfs/orto/proj/tapeout/dde_mse1a/soft/1273_X/88CFCA/LAYOUTS/gxt_x75yldtop_d06_1X474D_PC2_3AA.oas"
   ]
 ] 
 
@@ -39,7 +38,6 @@ class App extends Component {
     // });
     tmp.forEach(activity => {
       activity.forEach(fileName => {
-        console.log("Starts here ##########")
        // console.log(fileName);
         var names = fileName.split("/")
        // console.log(names[10])
@@ -48,14 +46,15 @@ class App extends Component {
   });
 
   var folderLevel1 = new Map();
-  let folderLevel2 = new Map();
-  let folderLevel3 = new Map();
   fileNames.forEach(file=>{
+    let folderLevel2 = new Map();
+    let folderLevel3 = new Map();
     var arr1 = []
     arr1.push(file)
     var folderNames = file.split("_")
     if(folderLevel1.has(folderNames[1])) {
-      var innerFolder2 = folderLevel1.get(folderNames[1])
+       var innerFolder2 = folderLevel1.get(folderNames[1])
+       console.log("innerFolder2"+innerFolder2)
       if(innerFolder2.has(folderNames[3])) {
         var innerFolder3 = innerFolder2.get(folderNames[3])
       // console.log(innerFolder3)
@@ -77,13 +76,13 @@ class App extends Component {
       }
  
     } else {
-     
+     console.log("inside folder1 else")
       folderLevel3.set(folderNames[4], arr1)
       folderLevel2.set(folderNames[3], folderLevel3 )      
       folderLevel1.set(folderNames[1], folderLevel2)
     }
   })
-  //console.log(folderLevel1)
+  console.log(folderLevel1)
   this.setState({folderStructure: folderLevel1});
   }
   closeSideBar =() =>{

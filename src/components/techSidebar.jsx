@@ -128,15 +128,23 @@ export default class TechSidebar extends Component {
     for (const [k1, v1] of iterator) {
      const label1 = <><div className="square" /><span className="node">{k1}</span></>;
      for (const [k2, v2] of v1) {
+      console.log(k2)
       const label2 = <><div className="square" /><span className="node">{k2}</span></>;
       let folder3 = [];
       for (const [k3, v3] of v2) {
+        //folder3 = [];
         const label3 = <><div className="square" /><span className="node">{k3}</span></>
-        console.log(v3);
+        console.log({v3})
+        var x;
+        let folder4= []
+        for (x in v3) {
+          folder4.push(<div className="tree-info"> <span className='checkbox-text'><input type="checkbox" id={x} name={x} value={v3} onClick={()=>this.onCheckBoxClick(v3[x])}/>{v3[x]}</span></div>);
+        }
         folder3.push(<TreeView key={label3} nodeLabel={label3} defaultCollapsed={false}>
-          <div className="tree-info"> <input type="checkbox" id={v3} name={v3} value={v3} onClick={()=>this.onCheckBoxClick(v3)}/><span className='checkbox-text'>{v3}</span></div>
+          {folder4}
         </TreeView>)
-       }       
+       }
+       folder2 = [];      
         folder2.push(<TreeView key={label2} nodeLabel={label2} defaultCollapsed={false}>
          {folder3}
        </TreeView>)
