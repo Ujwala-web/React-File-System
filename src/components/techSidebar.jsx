@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TreeView from './TreeView'
 
+var checkedList = [];
 const items = [ 'gxt_x74yldtop_d06_1T774D_PC1_3AA.oas', 'gxt_x74yldtop_d06_1X784D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X794D_PC3_3AA.oas', 'gxt_x74yldtop_d06_1X275D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X274D_PC1_3AA.oas']
 
 const fileStructure = [
@@ -127,10 +128,13 @@ export default class TechSidebar extends Component {
     var iterator = folderStructure.entries()
     for (const [k1, v1] of iterator) {
      const label1 = <><div className="square" /><span className="node">{k1}</span></>;
+    // console.log(k1)
+    folder2 = [];
      for (const [k2, v2] of v1) {
       console.log(k2)
       const label2 = <><div className="square" /><span className="node">{k2}</span></>;
       let folder3 = [];
+    
       for (const [k3, v3] of v2) {
         //folder3 = [];
         const label3 = <><div className="square" /><span className="node">{k3}</span></>
@@ -138,13 +142,13 @@ export default class TechSidebar extends Component {
         var x;
         let folder4= []
         for (x in v3) {
-          folder4.push(<div className="tree-info"> <span className='checkbox-text'><input type="checkbox" id={x} name={x} value={v3} onClick={()=>this.onCheckBoxClick(v3[x])}/>{v3[x]}</span></div>);
+          folder4.push(<div className="tree-info"> <span className='checkbox-text'><input type="checkbox" id={x} name={x} value={v3[x]} onChange={this.onCheckBoxClick}/>{v3[x]}</span></div>);
         }
         folder3.push(<TreeView key={label3} nodeLabel={label3} defaultCollapsed={false}>
           {folder4}
         </TreeView>)
        }
-       folder2 = [];      
+     //  folder2 = [];      
         folder2.push(<TreeView key={label2} nodeLabel={label2} defaultCollapsed={false}>
          {folder3}
        </TreeView>)
@@ -160,19 +164,27 @@ export default class TechSidebar extends Component {
     )
     return content;
    }
-  onCheckBoxClick = (folder) => {
-    console.log(folder)
-    var list = this.state.folderList;
-    list.push(folder);
-    this.setState({folderList: list});
+  
+  onCheckBoxClick = (e) => {
+    console.log(e.target)
+   // console.log(folder)
+   if(e.target.checked) {
+    // var list = this.state.folderList;
+    // list.push(e.target.value);
+    // this.setState({folderList: list});
+    checkedList.push(e.target.value);
+   } else {
+     checkedList.slice(e.target.value)
+   }
+ 
    // console.log(this.state.folderList)
   }
   
   onSubmit = ()=>{
    console.log('inside submit')
-   console.log(this.state.folderList)
+   console.log(checkedList)
    var person;
-    this.state.folderList.map((folder=>{
+   checkedList.map((folder=>{
       // if(folder==='M4G'){
       //   console.log('inside m4g')
       //   this.props.tableContentList.push(
@@ -191,6 +203,8 @@ export default class TechSidebar extends Component {
       console.log( this.props.tableContentList);
       this.props.updateTableContentList(this.props.tableContentList)
     }))
+    checkedList =[];
+
   }
 
   render() {
