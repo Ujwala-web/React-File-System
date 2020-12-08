@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TreeView from './TreeView'
+import axios from 'axios'
 
 var checkedList = [];
 const items = [ 'gxt_x74yldtop_d06_1T774D_PC1_3AA.oas', 'gxt_x74yldtop_d06_1X784D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X794D_PC3_3AA.oas', 'gxt_x74yldtop_d06_1X275D_PC2_3AA.oas', 'gxt_x74yldtop_d06_1X274D_PC1_3AA.oas']
@@ -177,12 +178,13 @@ export default class TechSidebar extends Component {
      checkedList.slice(e.target.value)
    }
  
-   // console.log(this.state.folderList)
+   console.log(checkedList)
   }
   
   onSubmit = ()=>{
    console.log('inside submit')
    console.log(checkedList)
+   
    var person;
    checkedList.map((folder=>{
       // if(folder==='M4G'){
@@ -203,7 +205,13 @@ export default class TechSidebar extends Component {
       console.log( this.props.tableContentList);
       this.props.updateTableContentList(this.props.tableContentList)
     }))
-    checkedList =[];
+    const apiUrl = 'http://127.0.0.1:5000/sendfiles'
+    axios.post(apiUrl,checkedList).then((response) => {
+      console.log(response);
+    }).catch((error) =>{
+      console.log(error)
+    })
+   
 
   }
 

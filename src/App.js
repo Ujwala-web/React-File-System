@@ -38,8 +38,8 @@ class App extends Component {
       console.log(response.data);
       allRepos.forEach(fileName => {
            if(fileName!=' ' || fileName != null) {
-            var names = fileName.split("/")
-             fileNames.push(names[10])
+            //var names = fileName.split("/")
+             fileNames.push(fileName)
            }
       })
       
